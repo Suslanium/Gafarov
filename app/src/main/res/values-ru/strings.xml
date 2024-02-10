@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gafarov</string>
+    <string name="popular">Популярные</string>
+    <string name="loading_error_msg">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
+    <string name="retry">Повторить</string>
+    <string name="loading_error_short">Что-то пошло не так…</string>
+    <string name="genres">"Жанры: "</string>
+    <string name="countries">"Страны: "</string>
+    <string name="year">"Год: "</string>
+    <string name="details_hint">" Нажмите на фильм, чтобы узнать о нем больше информации"</string>
+</resources>

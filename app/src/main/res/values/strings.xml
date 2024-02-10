@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Gafarov</string>
+    <string name="popular">Popular</string>
+    <string name="loading_error_msg">An error occurred while loading data. Check your network connection.</string>
+    <string name="retry">Retry</string>
+    <string name="loading_error_short">Something went wrong…</string>
+    <string name="genres">"Genres: "</string>
+    <string name="countries">"Countries: "</string>
+    <string name="year">"Year: "</string>
+    <string name="details_hint">Click on a film to find out more information about it</string>
+</resources>
