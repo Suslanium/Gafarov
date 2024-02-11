@@ -9,4 +9,6 @@
     <string name="countries">"Страны: "</string>
     <string name="year">"Год: "</string>
     <string name="details_hint">" Нажмите на фильм, чтобы узнать о нем больше информации"</string>
+    <string name="favourites">Избранное</string>
+    <string name="favourites_hint">Нажмите и удерживайте карточку фильма, чтобы добавить его в избранное.</string>
 </resources>

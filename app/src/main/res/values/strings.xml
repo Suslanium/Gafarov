@@ -8,4 +8,6 @@
     <string name="countries">"Countries: "</string>
     <string name="year">"Year: "</string>
     <string name="details_hint">Click on a film to find out more information about it</string>
+    <string name="favourites">Favourites</string>
+    <string name="favourites_hint">Touch and hold a movie card to add that movie to your favorites.</string>
 </resources>

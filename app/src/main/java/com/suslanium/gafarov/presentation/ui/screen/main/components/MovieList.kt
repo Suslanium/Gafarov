@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import com.suslanium.gafarov.domain.entity.MovieSummary
+import com.suslanium.gafarov.presentation.ui.common.MovieCard
 import com.suslanium.gafarov.presentation.ui.theme.LightBlue
 
 @Composable
@@ -22,13 +23,15 @@ fun MovieList(
     shimmerOffsetProvider: () -> Float,
     lazyListStateProvider: () -> LazyListState,
     moviePagingItems: LazyPagingItems<MovieSummary>,
-    onMovieClick: (Long) -> Unit
+    onMovieClick: (Long) -> Unit,
+    onLongMovieClick: (MovieSummary) -> Unit,
+    favouriteMovieIdsProvider: () -> HashSet<Long>
 ) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        contentPadding = PaddingValues(horizontal = 15.dp, vertical = 15.dp),
+        contentPadding = PaddingValues(start = 15.dp, end = 15.dp, top = 15.dp, bottom = 90.dp),
         state = lazyListStateProvider()
     ) {
         items(
@@ -41,7 +44,12 @@ fun MovieList(
                     movieSummary = movie,
                     onClick = {
                         onMovieClick(movie.id)
-                    })
+                    },
+                    onLongClick = {
+                        onLongMovieClick(movie)
+                    },
+                    isFavourite = favouriteMovieIdsProvider().contains(movie.id)
+                )
             }
         }
 
