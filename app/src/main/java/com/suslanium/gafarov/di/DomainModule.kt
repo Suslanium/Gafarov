@@ -15,6 +15,7 @@ import com.suslanium.gafarov.domain.usecase.GetFavouriteMoviesUseCase
 import com.suslanium.gafarov.domain.usecase.GetMovieDetailsUseCase
 import com.suslanium.gafarov.domain.usecase.GetMoviesListUseCase
 import com.suslanium.gafarov.domain.usecase.RemoveFavouriteMovieUseCase
+import com.suslanium.gafarov.domain.usecase.SaveMovieDetailsUseCase
 import org.koin.dsl.module
 
 private fun provideMovieRepository(
@@ -68,5 +69,9 @@ fun provideDomainModule() = module {
 
     factory {
         RemoveFavouriteMovieUseCase(get())
+    }
+
+    factory {
+        SaveMovieDetailsUseCase(get())
     }
 }

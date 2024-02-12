@@ -13,6 +13,7 @@ import com.suslanium.gafarov.domain.usecase.GetFavouriteMoviesUseCase
 import com.suslanium.gafarov.domain.usecase.GetMovieDetailsUseCase
 import com.suslanium.gafarov.domain.usecase.GetMoviesListUseCase
 import com.suslanium.gafarov.domain.usecase.RemoveFavouriteMovieUseCase
+import com.suslanium.gafarov.domain.usecase.SaveMovieDetailsUseCase
 import com.suslanium.gafarov.presentation.state.DetailsState
 import com.suslanium.gafarov.presentation.state.RootState
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -26,6 +27,7 @@ class RootViewModel(
     getMoviesListUseCase: GetMoviesListUseCase,
     private val getMovieDetailsUseCase: GetMovieDetailsUseCase,
     private val addFavouriteMovieUseCase: AddFavouriteMovieUseCase,
+    private val saveMovieDetailsUseCase: SaveMovieDetailsUseCase,
     getFavouriteMoviesUseCase: GetFavouriteMoviesUseCase,
     getFavouriteMovieIdsUseCase: GetFavouriteMovieIdsUseCase,
     private val removeFavouriteMovieUseCase: RemoveFavouriteMovieUseCase
@@ -59,6 +61,8 @@ class RootViewModel(
         _detailsState.value = DetailsState.Error
     }
 
+    private val ignoreExceptionHandler = CoroutineExceptionHandler { _, _ -> }
+
     fun hideDetails() {
         _isDetailsScreenShown.value = false
     }
@@ -83,16 +87,17 @@ class RootViewModel(
         _rootState.value = state
     }
 
-    fun addOrRemoveMovieToFavourites(movieSummary: MovieSummary) {
+    fun addOrRemoveFavouriteMovie(movieSummary: MovieSummary) {
         if (!favouriteMovieIds.value.contains(movieSummary.id))
-            viewModelScope.launch(Dispatchers.IO + loadingExceptionHandler) {
-            val movieDetails = getMovieDetailsUseCase(movieSummary.id)
-            addFavouriteMovieUseCase(movieSummary, movieDetails)
-        }
+            viewModelScope.launch(Dispatchers.IO + ignoreExceptionHandler) {
+                addFavouriteMovieUseCase(movieSummary)
+                val movieDetails = getMovieDetailsUseCase(movieSummary.id)
+                saveMovieDetailsUseCase(movieSummary.id, movieDetails)
+            }
         else
-            viewModelScope.launch(Dispatchers.IO + loadingExceptionHandler) {
-            removeFavouriteMovieUseCase(movieSummary.id)
-        }
+            viewModelScope.launch(Dispatchers.IO + ignoreExceptionHandler) {
+                removeFavouriteMovieUseCase(movieSummary.id)
+            }
     }
 
 }

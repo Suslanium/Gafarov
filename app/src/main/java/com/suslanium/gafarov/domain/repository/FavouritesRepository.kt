@@ -10,7 +10,9 @@ interface FavouritesRepository {
 
     fun getFavoriteMovieIds(): Flow<HashSet<Long>>
 
-    suspend fun addFavoriteMovie(summary: MovieSummary, details: MovieDetails)
+    suspend fun addFavoriteMovie(summary: MovieSummary)
+
+    suspend fun saveMovieDetails(movieId: Long, movieDetails: MovieDetails)
 
     suspend fun removeFavoriteMovie(movieId: Long)
 

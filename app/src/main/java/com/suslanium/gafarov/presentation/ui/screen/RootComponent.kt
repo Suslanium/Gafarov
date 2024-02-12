@@ -64,7 +64,7 @@ fun RootComponent(context: Context) {
                     onMovieClick = viewModel::setSelectedMovieId,
                     favouriteMovieIdsProvider = { favouriteMovieIds },
                     onLongMovieClick = {
-                        viewModel.addOrRemoveMovieToFavourites(it)
+                        viewModel.addOrRemoveFavouriteMovie(it)
                         haptics.performHapticFeedback(HapticFeedbackType.LongPress)
                     },
                     rootStateProvider = { rootState },
@@ -84,7 +84,7 @@ fun RootComponent(context: Context) {
                 widthFraction = 0.5f,
                 favouriteMovieIdsProvider = { favouriteMovieIds },
                 onLongMovieClick = {
-                    viewModel.addOrRemoveMovieToFavourites(it)
+                    viewModel.addOrRemoveFavouriteMovie(it)
                     haptics.performHapticFeedback(HapticFeedbackType.LongPress)
                 },
                 rootStateProvider = { rootState },

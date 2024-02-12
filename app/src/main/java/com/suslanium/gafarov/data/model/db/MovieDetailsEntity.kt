@@ -10,7 +10,7 @@ data class MovieDetailsEntity(
     val posterUri: String,
     val title: String,
     val description: String,
-    val genres: List<String>,
-    val countries: List<String>,
+    val genres: String,
+    val countries: String,
     val year: Int
 )

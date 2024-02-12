@@ -128,7 +128,7 @@ fun DetailsContent(
                     append(context.resources.getString(R.string.genres))
                 }
                 withStyle(style = S14_W400.toSpanStyle()) {
-                    append(movieDetails.genres.joinToString(separator = ", "))
+                    append(movieDetails.genres)
                 }
             },
             color = SemiTransparentBlack,
@@ -150,7 +150,7 @@ fun DetailsContent(
                     append(context.resources.getString(R.string.countries))
                 }
                 withStyle(style = S14_W400.toSpanStyle()) {
-                    append(movieDetails.countries.joinToString(separator = ", "))
+                    append(movieDetails.countries)
                 }
             },
             color = SemiTransparentBlack,

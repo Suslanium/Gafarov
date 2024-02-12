@@ -1,5 +1,6 @@
 package com.suslanium.gafarov.data.converter
 
+import androidx.compose.ui.util.fastJoinToString
 import com.suslanium.gafarov.data.Constants
 import com.suslanium.gafarov.data.model.MovieDetailsModel
 import com.suslanium.gafarov.domain.entity.MovieDetails
@@ -20,8 +21,11 @@ class MovieDetailsConverter(
                 else
                     nameOriginal ?: nameEn ?: nameRu ?: Constants.EMPTY_STRING,
                 description = description ?: Constants.EMPTY_STRING,
-                genres = genres?.map { genreModel -> genreModel.genre } ?: emptyList(),
-                countries = countries?.map { countryModel -> countryModel.country } ?: emptyList(),
+                //This is incorrect because the locale may change over time, but I realized this a bit too late
+                genres = (genres?.map { genreModel -> genreModel.genre }
+                    ?: emptyList()).fastJoinToString(", "),
+                countries = (countries?.map { countryModel -> countryModel.country }
+                    ?: emptyList()).fastJoinToString(", "),
                 year = year ?: 0
             )
         }
